@@ -1,0 +1,7 @@
+#!/bin/bash
+
+openssl genrsa -out privkey 4096
+
+openssl req -new -out csr -key privkey -config openssl.cnf -batch
+
+openssl x509 -req -days 365 -in csr -signkey privkey -out certificate -extensions v3_req -extfile openssl.cnf
